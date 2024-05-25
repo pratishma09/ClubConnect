@@ -8,7 +8,17 @@
     <title>ClubConnect</title>
 </head>
 <body>
+    <div class="flex">
+        <div class="h-screen sticky bg-black w-20 flex flex-col justify-between">
+            @include('components.sidenav')
+        </div>
+            
+        
+        <div class="flex-1 h-screen overflow-auto">
+            @yield('content')
+        </div>
+        
+    </div>
     @include('sweetalert::alert')
-    @yield('content')
 </body>
 </html>

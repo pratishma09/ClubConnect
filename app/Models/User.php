@@ -43,4 +43,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function clubs()
+    {
+        return $this->hasMany(Club::class);
+    }
+    
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isClub()
+    {
+        return $this->role === 'club';
+    }
 }

@@ -1,6 +1,6 @@
-@extends('layout.auth')
+@extends('layout.admin')
 @section('content')
-    <div class="min-h-screen bg-gray-100 text-gray-900 md:flex justify-center">
+    <div class="bg-gray-100 text-gray-900 md:flex justify-center">
         <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg md:flex justify-center flex-1">
             <div class="lg:w-1/2 p-6 sm:p-12">
                 <div>
@@ -12,7 +12,7 @@
 
                         <div class="my-12 border-b text-center">
                             <div class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2 uppercase">
-                                Create Club
+                                Create User
                             </div>
                         </div>
 

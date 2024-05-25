@@ -1,5 +1,5 @@
-@extends('layout.auth')
-@section('content')
+@extends('layout.user')
+@section('users')
     <div class="min-h-screen bg-gray-100 text-gray-900 md:flex justify-center">
         <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg md:flex justify-center flex-1">
             <div class="lg:w-1/2 p-6 sm:p-12">
