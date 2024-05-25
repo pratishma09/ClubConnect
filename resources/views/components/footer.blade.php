@@ -1,46 +1,44 @@
 <!-- component -->
-<footer class="bg-blue-100/80 font-sans dark:bg-gray-900">
+<footer class="mt-20 bg-purple-100/80 font-sans ">
     <div class="container px-6 py-12 mx-auto">
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
             <div class="sm:col-span-2">
-                <h1 class="max-w-lg text-xl font-semibold tracking-tight text-gray-800 xl:text-2xl dark:text-white">Subscribe our newsletter to get an update.</h1>
+                <h1 class="max-w-lg text-xl font-semibold tracking-tight text-gray-800 xl:text-2xl dark:text-black">Subscribe our club portal for more updates.</h1>
 
                 
                 <form method="POST" action="{{ route('subscribe.store') }}" class="flex flex-col space-y-4 md:w-1/2 mx-auto">
                     @csrf
-                    <input type="email" name="email" placeholder="Enter your email" class="border-gray-300 border p-3 rounded-md focus:outline-none focus:border-blue-500">
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded-md hover:bg-blue-600 transition-colors focus:outline-none">Subscribe</button>
+                    <input type="email" name="email" placeholder="Enter your email" class="border-gray-500 border p-3 rounded-md focus:outline-none focus:border-purple-500">
+                    <button type="submit" class="bg-purple-500 text-black px-4 py-3 rounded-md hover:bg-purple-600 transition-colors focus:outline-none">Subscribe</button>
                 </form>
             </div>
 
             <div>
-                <p class="font-semibold text-gray-800 dark:text-white">Quick Link</p>
+                <p class="font-semibold text-gray-800 dark:text-black">Quick Link</p>
 
                 <div class="flex flex-col items-start mt-5 space-y-2">
-                    <p class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500">Home</p>
-                    <p class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500">Who We Are</p>
-                    <p class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500">Our Philosophy</p>
+                    <a href="/" class="text-gray-500 transition-colors duration-300 dark:text-gray-500 dark:hover:text-palette hover:underline hover:cursor-pointer hover:text-palette">Home</a>
+                    <a class="text-gray-500 transition-colors duration-300 dark:text-gray-500 dark:hover:text-palette hover:underline hover:cursor-pointer hover:text-palette">Who We Are</a>
+                    <a class="text-gray-500 transition-colors duration-300 dark:text-gray-500 dark:hover:text-palette hover:underline hover:cursor-pointer hover:text-palette">Contacts</a>
                 </div>
             </div>
 
             <div>
-                <p class="font-semibold text-gray-800 dark:text-white">Industries</p>
+                <p class="font-semibold text-gray-800 dark:text-black">Popular</p>
 
                 <div class="flex flex-col items-start mt-5 space-y-2">
-                    <p class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500">Retail & E-Commerce</p>
-                    <p class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500">Information Technology</p>
-                    <p class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500">Finance & Insurance</p>
+                    <a class="text-gray-500 transition-colors duration-300 dark:text-gray-500 dark:hover:text-palette hover:underline hover:cursor-pointer hover:text-palette">Clubs</a>
+                    <a class="text-gray-500 transition-colors duration-300 dark:text-gray-500 dark:hover:text-palette hover:underline hover:cursor-pointer hover:text-palette">Upcoming Events</a>
+                    <a class="text-gray-500 transition-colors duration-300 dark:text-gray-500 dark:hover:text-palette hover:underline hover:cursor-pointer hover:text-palette">Reports</a>
+                    
                 </div>
             </div>
         </div>
         
-        <hr class="my-6 border-gray-200 md:my-8 dark:border-gray-700 h-2" />
+        <hr class="my-6 border-gray-200 md:my-8 dark:border-gray-500 h-2" />
         
         <div class="sm:flex sm:items-center sm:justify-between">
-            <div class="flex flex-1 gap-4 hover:cursor-pointer">
-                <img src="https://www.svgrepo.com/show/303139/google-play-badge-logo.svg" width="130" height="110" alt="" />
-                <img src="https://www.svgrepo.com/show/303128/download-on-the-app-store-apple-logo.svg" width="130" height="110" alt="" />
-            </div>
+            
             
             <div class="flex gap-4 hover:cursor-pointer">
                 <img src="https://www.svgrepo.com/show/303114/facebook-3-logo.svg" width="30" height="30" alt="fb" />
@@ -52,6 +50,6 @@
                 <img src="https://www.svgrepo.com/show/22048/dribbble.svg" class="" width="30" height="30" alt="db" />
             </div>
         </div>
-        <p class="font-sans p-8 text-start md:text-center md:text-lg md:p-4">© 2023 You Company Inc. All rights reserved.</p>
+        <p class="font-sans p-8 text-start md:text-center md:text-lg md:p-4">© 2024 ClubConnect. All rights reserved.</p>
     </div>
 </footer>
