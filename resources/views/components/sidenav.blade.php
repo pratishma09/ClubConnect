@@ -1,13 +1,14 @@
+@extends('layout.club')
+@section('clubs')
 
           <div class="mt-10 mb-10">
             <a href="#">
-              <img
-                src="https://randomuser.me/api/portraits/women/76.jpg"
-                class="rounded-full w-10 h-10 mb-3 mx-auto"
+              <img src="{{ asset('assets/admin/ava.png') }}"
+                class="rounded-full w-16 h-10 mb-3 mx-auto"
               />
             </a>
             <div class="mt-10">
-              <ul>
+              <ul class="flex flex-col mx-5 items-start">
                 <li class="mb-6">
                   <a href="{{route('clubs.index')}}">
                     <span>
@@ -29,7 +30,7 @@
                 </li>
                 <li class="mb-6">
                   <a href="{{route('register')}}">
-                    <span>
+                    <span class="flex items-center gap-3">
                       <svg
                         class="fill-current h-5 w-5 mx-auto text-gray-300 hover:text-green-500"
                         viewBox="0 0 24 24"
@@ -39,7 +40,9 @@
                             014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4
                             8-4z"
                         ></path>
+                        
                       </svg>
+                      <p class="text-white text-xl">User</p>
                     </span>
                   </a>
                 </li>
@@ -111,3 +114,4 @@
             </button>
           </form>
           </div>
+@endsection

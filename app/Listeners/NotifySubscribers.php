@@ -10,7 +10,7 @@ use App\Models\Subscription;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 
-class NotifySubscribers
+class NotifySubscribers implements ShouldQueue
 {
 
     use InteractsWithQueue;

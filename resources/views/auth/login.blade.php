@@ -7,8 +7,8 @@
                     <img src="{{ asset('assets/logo.png') }}" class="mx-auto w-40" />
                 </div>
                 
-                <div class="flex flex-col items-center">
-                    <div class="w-full flex-1">
+                <div class="flex flex-col w-full items-center">
+                    <div class=" w-full">
 
 
                         <div class="my-12 border-b text-center">
@@ -54,9 +54,9 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-purple-100 text-center hidden md:flex">
-                <div class="w-full"
-                    ><img src="{{ asset('assets/auth/login.png') }}" class="h-full w-full mx-auto bg" />
+            <div class="bg-purple-100 text-center w-2/3 hidden md:flex">
+                <div class=""
+                    ><img src="{{ asset('assets/club.jpg') }}" class="h-full w-full mx-auto bg" />
                 </div>
             </div>
         </div>

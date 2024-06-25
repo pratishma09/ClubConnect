@@ -24,9 +24,13 @@
 
                                 <div class="mt-5">
                                     <label for="name" class="block text-sm font-medium text-gray-700">Club Name</label>
-                                    <input
+                                    <select
                                         class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                        type="text" name="name" id="name" placeholder="Club Name" value="{{ $club->name }}" required />
+                                        name="name" id="name" required>
+                                        @foreach($users as $user)
+                                            <option value="{{ $user->name }}" {{ $user->name == $club->name ? 'selected' : '' }}>{{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="mt-5">

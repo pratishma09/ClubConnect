@@ -36,7 +36,7 @@ class ClubController extends Controller
     public function create()
     {
         //
-        $users=User::all();
+        $users = User::where('role', 'club')->get();
         $clubs=Club::all();
         return view('admin.clubs.create')->with(compact('users','clubs'));
     }
@@ -81,7 +81,7 @@ class ClubController extends Controller
         //
         try {
             $club = Club::findOrFail($id);
-            $users = User::all();
+            $users = User::where('role', 'club')->get();
             return view('admin.clubs.edit', compact('club', 'users'));
         } catch (Exception $e) {
             
@@ -138,4 +138,18 @@ class ClubController extends Controller
             return back()->with('error', 'Something went wrong!');
         }
     }
+
+    public function userclub()
+    {
+        //
+        try{
+            $users=User::all();
+            $clubs=Club::all();
+            return view('users.clubs.index')->with(compact('users','clubs'));
+        }
+        catch(Exception $e){
+            return back()->with('error', 'Something went wrong!');
+        }
+    }
+
 }

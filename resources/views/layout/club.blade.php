@@ -8,8 +8,14 @@
     <title>ClubConnect</title>
 </head>
 <body>
-    @include('components.nav')
-    @yield('clubs')
+    <div class="flex">
+        @include('components.clubnav')
+        <div class="flex-1">
+            @yield('clubs')
+        </div>
+        
+    </div>
+    
     @include('sweetalert::alert')
 </body>
 </html>

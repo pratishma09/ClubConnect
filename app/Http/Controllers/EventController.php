@@ -169,4 +169,15 @@ class EventController extends Controller
 
         return redirect()->route('events.index')->with('success', 'Report updated successfully!');
     }
+
+    public function all(){
+        try{
+            $events=Event::all();
+            return view('clubs.events.all', compact('events'));
+        }
+        catch(Exception $e){
+            dd($e);
+            return back()->with('error', 'Something went wrong!');
+        }
+    }
 }

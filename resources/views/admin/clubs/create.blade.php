@@ -20,9 +20,17 @@
                         <div class="mx-auto max-w-xs">
                             <form method="POST" action="{{ route('clubs.store') }}" enctype="multipart/form-data">
                                 @csrf
-                                <input
-                                    class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                                    type="text" name="name" placeholder="Club Name" required />
+                                <div class="mt-5">
+                                    <label for="name" class="block text-sm font-medium text-gray-700">Club Name</label>
+                                    <select
+                                        class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                        name="name" id="name" required>
+                                        @foreach($users as $user)
+                                            <option value="{{ $user->name }}" >{{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                
                                 <textarea
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                                     type="text" name="description" placeholder="Description of Club" required rows="10" cols="10"></textarea>
