@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Club;
+use App\Models\User;
+use App\Notifications\CollaborationRequest;
 use App\Http\Requests\EventRequest;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -11,6 +13,8 @@ use Exception;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Events\EventCreated;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class EventController extends Controller
 {
@@ -64,7 +68,6 @@ class EventController extends Controller
             $data['photo'] = $filename;
         }
         
-        // Create the event
         $event=Event::create($data);
         event(new EventCreated($event));
         return redirect()->route('events.index')->with('success', 'Event created successfully!');
@@ -73,9 +76,20 @@ class EventController extends Controller
         return back()->with('error', 'Something went wrong!');
     }
 }
+public function show()
+    {
+        $event = Event::all();
+        
+        return view('clubs.events.viewnotify', compact('event'));
+    }
 
-
-
+    public function showuser($id)
+    {
+        $event = Event::findOrFail($id);
+        $collaborators = json_decode($event->collaborators, true);
+        $events = Event::latest()->take(3)->get();
+        return view('users.events.showuser', compact('event','events','collaborators'));
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -90,7 +104,7 @@ class EventController extends Controller
             return redirect()->route('events.report.edit', $id);
         }
 
-        return view('events.edit', compact('event'));
+        return view('clubs.events.edit', compact('event'));
     }
 
     /**
@@ -180,4 +194,70 @@ class EventController extends Controller
             return back()->with('error', 'Something went wrong!');
         }
     }
+    public function collaborate(Request $request, $eventId)
+    {
+        try{
+            $event = Event::findOrFail($eventId);
+            $user = Auth::user();
+            if (!$user) {
+                return redirect()->back()->with('error', 'You are not logged in.');
+            }
+            if (!$event->users()->where('user_id', $user->id)->exists()) {
+                $event->users()->attach($user->id, ['status' => 'pending']);
+                $event = $event->fresh();
+                if ($event->user) {
+                    $event->user->notify(new CollaborationRequest($event, $user));
+                }
+            }
+
+            return redirect()->back()->with('success', 'Collaboration request sent.');
+        }
+        catch(Exception $e){
+            dd($e);
+            return back()->with('error', 'Something went wrong!');
+        }
+    }
+    
+
+    public function acceptCollaboration(Request $request, $eventId, $userId)
+{
+    try {
+        $event = Event::findOrFail($eventId);
+
+        if (Auth::user()->id !== $event->user_id) {
+            return redirect()->back()->with('error', 'You are not authorized to approve this collaboration.');
+        }
+
+        $event->users()->updateExistingPivot($userId, ['status' => 'accepted']);
+
+        $user = User::findOrFail($userId);
+        $collaborators = json_decode($event->collaborators, true) ?? [];
+        if (!in_array($user->name, $collaborators)) {
+            $collaborators[] = $user->name;
+        }
+        $event->update(['collaborators' => json_encode($collaborators)]);
+        return redirect()->back()->with('success', 'Collaboration accepted and event updated with collaborators.');
+    } catch (ModelNotFoundException $e) {
+        return redirect()->back()->with('error', 'Event or user not found.');
+    } catch (Exception $e) {
+        return redirect()->back()->with('error', 'Something went wrong.');
+    }
+}
+    
+    public function rejectCollaboration(Request $request, $eventId, $userId)
+    {
+        $event = Event::findOrFail($eventId);
+        if (Auth::user()->id !== $event->user_id) {
+            return redirect()->back()->with('error', 'You are not authorized to reject this collaboration.');
+        }
+        $event->users()->updateExistingPivot($userId, ['status' => 'rejected']);
+        return redirect()->back()->with('success', 'Collaboration rejected.');
+    }
+
+    public function userevent()
+{
+    $events = Event::with('user')->get();
+    return view('users.events.index', compact('events'));
+}
+
 }

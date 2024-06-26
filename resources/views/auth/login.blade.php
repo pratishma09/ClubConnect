@@ -21,13 +21,13 @@
                         <div class="mx-auto max-w-xs">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
-                                <select
+                                {{-- <select
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                                     name="role">
                                     <option disabled selected><p class="text-gray-500">Role</p></option>
                                     <option value="club">Club</option>
                                     <option value="admin">Admin</option> <!-- Assuming this should be 'admin' for admin role -->
-                                </select>
+                                </select> --}}
                                 <input
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                                     type="email" name="email" placeholder="Email" />

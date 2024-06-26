@@ -23,4 +23,9 @@ class Club extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'event_club')->withPivot('status')->withTimestamps();
+    }
 }

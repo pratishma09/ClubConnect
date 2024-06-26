@@ -24,7 +24,7 @@
   </style>
   
   <header class="bg-white shadow-lg h-24 flex justify-evenly sticky">
-    <a href="/home" class="border flex items-center px-4 lg:px-6 xl:px-8">
+    <a href="/" class="border flex items-center px-4 lg:px-6 xl:px-8">
       <img class="h-10 object-contain" src="{{ asset('assets/logo.png') }}" alt="" />
     </a>
     <nav class="header-links contents font-semibold text-base lg:text-lg">
@@ -45,7 +45,7 @@
           </a>
         </li>
         <li class="p-3 xl:p-6">
-          <a href="{{route('events.index')}}">
+          <a href="{{route('userevent')}}">
             <span>Events</span>
           </a>
         </li>

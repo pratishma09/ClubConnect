@@ -1,5 +1,3 @@
-@extends('layout.club')
-@section('clubs')
 
           <div class="mt-10 mb-10">
             <a href="#">
@@ -29,7 +27,7 @@
                   </a>
                 </li>
                 <li class="mb-6">
-                  <a href="{{route('register')}}">
+                  <a href="{{route('userShow')}}">
                     <span class="flex items-center gap-3">
                       <svg
                         class="fill-current h-5 w-5 mx-auto text-gray-300 hover:text-green-500"
@@ -114,4 +112,3 @@
             </button>
           </form>
           </div>
-@endsection

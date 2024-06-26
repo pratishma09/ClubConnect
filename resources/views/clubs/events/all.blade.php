@@ -1,4 +1,5 @@
 @extends('layout.club')
+
 @section('clubs')
 <div>
     <div class="relative flex items-center justify-center h-screen">
@@ -11,6 +12,13 @@
                     <p class="text-gray-700 mb-2">{{ $event->description }}</p>
                     <p class="text-gray-600 mb-2">{{ \Carbon\Carbon::parse($event->date)->format('F j, Y') }}</p>
                     <p class="text-gray-600 mb-2">Budget: ${{ $event->budget }}</p>
+{{-- {{dd($event->user_id)}} --}}
+                    @if(Auth::user()->id !== $event->user_id )
+                        <form method="POST" action="{{ route('events.collaborate', $event->id) }}">
+                            @csrf
+                            <button type="submit" class="mt-4 bg-blue-500 px-4 py-2 rounded">Add as collaborator</button>
+                        </form>
+                    @endif
                 </div>
             </div>
             @endforeach

@@ -44,9 +44,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function clubs()
+    public function club()
     {
-        return $this->hasMany(Club::class);
+        return $this->hasOne(Club::class);
     }
     
     public function isAdmin()

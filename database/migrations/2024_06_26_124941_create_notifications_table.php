@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('collaborations', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('from_club_id')->constrained('clubs')->onDelete('cascade');
-            $table->foreignId('to_club_id')->constrained('clubs')->onDelete('cascade');
-            $table->enum('status', ['accepted', 'pending']);
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('type');
+            $table->morphs('notifiable');
+            $table->text('data');
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('collaborations');
+        Schema::dropIfExists('notifications');
     }
 };
