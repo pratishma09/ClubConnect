@@ -24,7 +24,9 @@ class Event extends Model
 
     public function clubs()
     {
-        return $this->belongsToMany(Club::class, 'event_club')->withPivot('status')->withTimestamps();
+        return $this->belongsToMany(Club::class, 'event_club')
+                    ->withPivot('amount_spent')
+                    ->withTimestamps();
     }
 
     public function owner()

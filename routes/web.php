@@ -30,6 +30,8 @@ Route::get('/club', [ClubController::class, 'userclub'])->name('clubs.userclub')
 Route::view('/about', 'users.aboutus')->name('aboutus');
 Route::get('/events/users', [EventController::class, 'userevent'])->name('userevent');
 Route::get('/events/users/{id}', [EventController::class, 'showuser'])->name('event.showuser');
+Route::get('/events/search', [EventController::class, 'search'])->name('events.search');
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware('admin')->group(function () {
@@ -46,6 +48,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
         Route::put('/user/{id}/edit', [UserController::class, 'update'])->name('users.update');
         Route::delete('/user/{id}/delete', [UserController::class, 'destroy'])->name('users.delete');
+
+        Route::get('/events/admin', [EventController::class, 'adminIndex'])->name('events.adminIndex');
     });
 
     Route::get('/logout', [LogoutController::class, 'logout'])->name('custom.logout');
@@ -65,4 +69,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/events/viewcollaborate',[EventController::class,'show'])->name('events.show');
     Route::post('/events/{eventId}/accept/{userId}', [EventController::class, 'acceptCollaboration'])->name('events.acceptCollaboration');
     Route::post('/events/{eventId}/reject/{userId}', [EventController::class, 'rejectCollaboration'])->name('events.rejectCollaboration');
+
+    Route::get('/showFinance', [EventController::class, 'showFinance'])->name('events.showFinance');
+    Route::get('/clubs/update-budget/{event}', [EventController::class, 'updateBudgetShow'])->name('events.update_budgetShow');
+    Route::put('/clubs/update-budget/{event}', [EventController::class, 'updateBudget'])->name('events.update_budget');
 });

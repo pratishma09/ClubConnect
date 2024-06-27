@@ -12,7 +12,7 @@
         <a href="{{route('events.index')}}" class="flex items-center gap-3 hover:bg-purple-700 p-2 rounded">
             <i class="fas fa-calendar-check"></i> Events
         </a>
-        <a href="{{route('events.all')}}" class="flex items-center gap-3 hover:bg-purple-700 p-2 rounded">
+        <a href="{{route('events.showFinance')}}" class="flex items-center gap-3 hover:bg-purple-700 p-2 rounded">
             <i class="fas fa-coins"></i> Finance
         </a>
         <a href="{{ route('events.show') }}" class="flex items-center gap-3 hover:bg-purple-700 p-2 rounded">

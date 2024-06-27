@@ -16,7 +16,8 @@ class Club extends Model
         'president',
         'vice_president',
         'user_id',
-        'logo'
+        'logo',
+        'initial_budget'
     ];
 
     public function user()
@@ -26,6 +27,6 @@ class Club extends Model
 
     public function events()
     {
-        return $this->belongsToMany(Event::class, 'event_club')->withPivot('status')->withTimestamps();
+        return $this->belongsToMany(Event::class, 'event_club')->withPivot('amount_spent')->withTimestamps();
     }
 }
