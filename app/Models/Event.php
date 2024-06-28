@@ -19,7 +19,8 @@ class Event extends Model
         'user_id',
         'photo',
         'report_images',
-        'collaborators'
+        'collaborators',
+        'no_of_participants'
     ];
 
     public function clubs()

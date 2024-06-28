@@ -18,5 +18,18 @@ class FinanceChart extends Chart
         $this->type('pie');
         $this->labels([]);
         $this->dataset('Budget Spent by Club', 'pie', []);
+
+        $this->options([
+            'maintainAspectRatio' => false,
+            'scales' => [
+                'yAxes' => [
+                    [
+                        'ticks' => [
+                            'beginAtZero' => true,
+                        ],
+                    ],
+                ],
+            ],
+        ]);
     }
 }

@@ -61,7 +61,13 @@
                                 <div class="mt-5">
                                     <label for="report_description" class="block text-sm font-medium text-gray-700">Report Description</label>
                                     <textarea class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                        name="report_description" id="report_description" placeholder="Report Description" required rows="10">{{ $event->report_description }}</textarea>
+                                        name="report_description" value="report_description" id="report_description"  required rows="10">{{ $event->report_description }}</textarea>
+                                </div>
+
+                                <div class="mt-5">
+                                    <label for="no_of_participants" class="block text-sm font-medium text-gray-700">Number of Participants</label>
+                                    <input class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" type="number"
+                                        name="no_of_participants" id="no_of_participants" value="{{$event->no_of_participants}}" required>
                                 </div>
 
                                 <div class="mt-5">

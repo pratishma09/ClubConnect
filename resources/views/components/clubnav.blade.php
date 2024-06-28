@@ -15,6 +15,9 @@
         <a href="{{route('events.showFinance')}}" class="flex items-center gap-3 hover:bg-purple-700 p-2 rounded">
             <i class="fas fa-coins"></i> Finance
         </a>
+        <a href="{{route('clubparticipation')}}" class="flex items-center gap-3 hover:bg-purple-700 p-2 rounded">
+            <i class="fas fa-person"></i> Participants
+        </a>
         <a href="{{ route('events.show') }}" class="flex items-center gap-3 hover:bg-purple-700 p-2 rounded">
             <i class="fas fa-bell"></i> Notifications
         </a>

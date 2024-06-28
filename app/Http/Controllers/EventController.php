@@ -147,12 +147,22 @@ class EventController extends Controller
     {
         $request->validate([
             'report_description' => 'required|string',
+            'no_of_participants' => 'required|string',
             'report_images.*' => 'required|mimes:jpg,jpeg,png',
         ]);
 
         $event = Event::findOrFail($id);
-        $data = $request->only('report_description');
+        $event->update($request->all());
+        $data = $request->only('report_description','no_of_participants');
+        if ($request->hasFile('photo')) {
+            if ($event->photo && file_exists(public_path('assets/' . $event->photo))) {
+                unlink(public_path('assets/' . $event->photo));
+            }
 
+            $filename = 'photo_' . uniqid() . '_' . time() . '.' . $request->file('photo')->getClientOriginalExtension();
+            $request->file('photo')->move(public_path('assets'), $filename);
+            $event->update(['photo' => $filename]);
+        }
         if ($request->hasFile('report_images')) {
             $images = [];
             foreach ($request->file('report_images') as $file) {

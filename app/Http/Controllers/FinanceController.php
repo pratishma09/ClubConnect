@@ -69,62 +69,72 @@ class FinanceController extends Controller
         //
     }
 
-    
     public function showFinance()
-{
-    try {
-        $totalBudget = 25000;
-        $user = auth()->user();
-        $events = Event::where('user_id', $user->id)
-            ->orWhere('collaborators', 'LIKE', '%' . $user->name . '%')
-            ->with('clubs')
-            ->get();
-        
-        $eventsWithAmountSpent = $events->map(function ($event) use ($user) {
-            $club = Club::where('name', $user->name)->first();
-
-            if (!$club) {
-                return null; 
-            }
-
-            $clubEvent = $event->clubs()->where('club_id', $club->id)->first();
-
-            if ($clubEvent) {
-                $event->amount_spent = $clubEvent->pivot->amount_spent;
-            } else {
-                $event->amount_spent = 0;
-            }
-
-            return $event;
-        })->filter();
-
-        $totalSpent = $eventsWithAmountSpent->sum('amount_spent');
-        $unspentBudget = $totalBudget - $totalSpent;
-
-        $chartData = $eventsWithAmountSpent->map(function ($event) {
-            return [
-                'label' => $event->title,
-                'value' => $event->amount_spent,
+    {
+        try {
+            $totalBudget = 25000;
+            $user = auth()->user();
+            $events = Event::where('user_id', $user->id)
+                ->orWhere('collaborators', 'LIKE', '%' . $user->name . '%')
+                ->with('clubs')
+                ->get();
+            
+            $eventsWithAmountSpent = $events->map(function ($event) use ($user) {
+                $club = Club::where('name', $user->name)->first();
+    
+                if (!$club) {
+                    return null; 
+                }
+    
+                $clubEvent = $event->clubs()->where('club_id', $club->id)->first();
+    
+                if ($clubEvent) {
+                    $event->amount_spent = $clubEvent->pivot->amount_spent;
+                } else {
+                    $event->amount_spent = 0;
+                }
+    
+                return $event;
+            })->filter();
+    
+            $totalSpent = $eventsWithAmountSpent->sum('amount_spent');
+            $unspentBudget = $totalBudget - $totalSpent;
+    
+            $chartData = $eventsWithAmountSpent->map(function ($event) {
+                return [
+                    'label' => $event->title,
+                    'value' => $event->amount_spent,
+                ];
+            });
+            $chartData->push([
+                'label' => 'Unspent Budget',
+                'value' => $unspentBudget,
+            ]);
+    
+            $labels = $chartData->pluck('label')->toArray();
+            $values = $chartData->pluck('value')->toArray();
+    
+            // Custom colors for the pie chart
+            $colors = [
+                '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FFCD56'
             ];
-        });
-        $chartData->push([
-            'label' => 'Unspent Budget',
-            'value' => $unspentBudget,
-        ]);
-
-        $labels = $chartData->pluck('label')->toArray();
-        $values = $chartData->pluck('value')->toArray();
-
-        $chart = new FinanceChart;
-        $chart->labels($labels);
-        $chart->dataset('Budget Spent by Club', 'pie', $values);
-
-        return view('clubs.finance.showFinance', compact('eventsWithAmountSpent', 'chart'));
-    } catch (Exception $e) {
-        return back()->with('error', 'Something went wrong!');
+    
+            // Ensure the colors array matches the number of events + unspent budget
+            if (count($colors) < count($labels)) {
+                $additionalColors = array_slice($colors, 0, count($labels) - count($colors));
+                $colors = array_merge($colors, $additionalColors);
+            }
+    
+            $chart = new FinanceChart;
+            // $chart->labels($labels);
+            $chart->dataset('Budget Spent by Club', 'pie', $values)->backgroundColor($colors);
+    
+            return view('clubs.finance.showFinance', compact('eventsWithAmountSpent', 'chart', 'colors', 'labels'));
+        } catch (Exception $e) {
+            return back()->with('error', 'Something went wrong!');
+        }
     }
-}
-
+    
 
 public function updateBudget(Request $request, Event $event)
 {
@@ -170,39 +180,26 @@ public function updateBudget(Request $request, Event $event)
         $club = Club::where('name', $user->name)->first();
         return view('clubs.finance.budgetForm')->with(compact('event', 'club'));
     }
+    
     public function adminShow()
 {
     try {
-        // Fetch all events with their associated clubs
         $events = Event::with('clubs')->get();
 
-        // Calculate total amount spent for each event
         $eventData = $events->map(function ($event) {
             $totalAmountSpent = $event->clubs()->sum('amount_spent');
             return [
                 'event' => $event->title,
-                'total_spent' => $totalAmountSpent,
+                'total_spent' => (int) $totalAmountSpent,
             ];
         });
 
-        // Sort events by total spent (descending order)
         $sortedEvents = $eventData->sortByDesc('total_spent')->values();
-
-        // Extract labels (event titles) and values (total spent amounts)
-        $labels = $sortedEvents->pluck('event')->toArray();
-        $values = $sortedEvents->pluck('total_spent')->toArray();
-
-        // Initialize a new FinanceChart instance for line chart
-        $chart = new FinanceChart;
-        $chart->labels($labels);
-        $chart->dataset('Total Budget Spent by Event', 'line', $values)
-            ->backgroundColor('#6CB2EB')
-            ->color('#000000'); // Adjust line color as needed
-
-        return view('admin.finance.showFinance', compact('sortedEvents', 'chart'));
+        return view('admin.finance.showFinance', compact('sortedEvents'));
     } catch (Exception $e) {
         return back()->with('error', 'Something went wrong!');
     }
 }
+
 
 }

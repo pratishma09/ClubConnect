@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CollaborationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ParticipationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,12 +50,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/club/{id}/edit', [ClubController::class, 'update'])->name('clubs.update');
         Route::delete('/club/{id}/delete', [ClubController::class, 'destroy'])->name('clubs.delete');
 
-        Route::get('/users', [UserController::class, 'userShow'])->name('userShow');
-        Route::get('/user/create', [AuthAdminRegisterController::class, 'showRegistrationForm'])->name('register');
-        Route::post('/user/create', [AuthAdminRegisterController::class, 'clubregister'])->name('clubregister');
-        Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-        Route::put('/user/{id}/edit', [UserController::class, 'update'])->name('users.update');
-        Route::delete('/user/{id}/delete', [UserController::class, 'destroy'])->name('users.delete');
+        // Route::get('/users', [UserController::class, 'userShow'])->name('userShow');
+        // Route::get('/user/create', [AuthAdminRegisterController::class, 'showRegistrationForm'])->name('register');
+        // Route::post('/user/create', [AuthAdminRegisterController::class, 'clubregister'])->name('clubregister');
+        // Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+        // Route::put('/user/{id}/edit', [UserController::class, 'update'])->name('users.update');
+        // Route::delete('/user/{id}/delete', [UserController::class, 'destroy'])->name('users.delete');
 
         Route::get('/events/admin', [EventController::class, 'adminIndex'])->name('events.adminIndex');
 
@@ -82,6 +83,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/events/{event}/collaborate', [CollaborationController::class, 'collaborate'])->name('events.collaborate');
     Route::post('/events/{eventId}/accept/{userId}', [CollaborationController::class, 'acceptCollaboration'])->name('events.acceptCollaboration');
     Route::post('/events/{eventId}/reject/{userId}', [CollaborationController::class, 'rejectCollaboration'])->name('events.rejectCollaboration');
+
+    Route::get('/clubparticipation', [ParticipationController::class, 'clubparticipation'])->name('clubparticipation');
 
     Route::get('/showFinance', [FinanceController::class, 'showFinance'])->name('events.showFinance');
     Route::get('/clubs/update-budget/{event}', [FinanceController::class, 'updateBudgetShow'])->name('events.update_budgetShow');
