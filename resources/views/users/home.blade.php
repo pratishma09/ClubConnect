@@ -8,7 +8,7 @@
             <div class="absolute inset-0 flex flex-col text-center p-4">
                 <p class="text-white text-5xl mb-10 mt-32">Explore ClubConnect</p>
                 <div class="flex justify-center">
-                    <p class="text-white text-lg w-1/3">At ClubConnect, we are more than just a platform; we are a community of enthusiasts and learners. Connect with people who share your passions, participate in exciting events, and make lifelong friends.</p>
+                    <p class="text-white text-lg w-2/3 lg:w-1/3">At ClubConnect, we are more than just a platform; we are a community of enthusiasts and learners. Connect with people who share your passions, participate in exciting events, and make lifelong friends.</p>
                 </div>
                 <div class="flex flex-col gap-4 justify-center items-center p-4 my-6 mt-20">
                     <div class="relative p-3 rounded-2xl w-full max-w-lg">

@@ -1,18 +1,17 @@
 <?php
 
-use App\Http\Controllers\AuthAdminRegisterController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\CollaborationController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FinanceController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ParticipationController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CollaborationController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\ParticipationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,10 +35,9 @@ Route::get('/events/users/{id}', [EventController::class, 'showuser'])->name('ev
 Route::get('/events/search', [EventController::class, 'search'])->name('events.search');
 
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
-
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware('admin')->group(function () {
@@ -60,9 +58,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/events/admin', [EventController::class, 'adminIndex'])->name('events.adminIndex');
 
         Route::get('/admin/change-password', [UserController::class, 'adminchangePassword'])->name('admin.changePassword');
-    Route::post('/admin/change-password', [UserController::class, 'adminchangePasswordSave'])->name('admin.postChangePassword');
+        Route::post('/admin/change-password', [UserController::class, 'adminchangePasswordSave'])->name('admin.postChangePassword');
+        Route::get('/admin/showFinance', [FinanceController::class, 'adminShow'])->name('admin.show_finance');
 
-    Route::get('/admin/showFinance', [FinanceController::class, 'adminShow'])->name('admin.show_finance');
+        Route::get('/admin/contact', [ContactController::class, 'show'])->name('contact.show');
+        Route::delete('/contact/{id}/delete', [ContactController::class, 'destroy'])->name('contacts.delete');
     });
 
     Route::get('/logout', [LogoutController::class, 'logout'])->name('custom.logout');
@@ -79,7 +79,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('events/{id}/report/edit', [EventController::class, 'editReport'])->name('events.report.edit');
     Route::put('events/{id}/report', [EventController::class, 'updateReport'])->name('events.report.update');
 
-    Route::get('/events/viewcollaborate',[CollaborationController::class,'show'])->name('events.show');
+    Route::get('/events/viewcollaborate', [CollaborationController::class, 'show'])->name('events.show');
     Route::post('/events/{event}/collaborate', [CollaborationController::class, 'collaborate'])->name('events.collaborate');
     Route::post('/events/{eventId}/accept/{userId}', [CollaborationController::class, 'acceptCollaboration'])->name('events.acceptCollaboration');
     Route::post('/events/{eventId}/reject/{userId}', [CollaborationController::class, 'rejectCollaboration'])->name('events.rejectCollaboration');

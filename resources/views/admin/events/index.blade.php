@@ -34,7 +34,7 @@
             @foreach ($events as $event)
             <tr class="bg-white dark:border-gray-700">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    <img class="w-20 h-10" src="{{ asset('assets/' . $event->photo) }}" alt="Event Not Held Yet">
+                    <img class="w-20 h-10  object-contain" src="{{ asset('assets/' . $event->photo) }}" alt="Event Not Held Yet">
                 </th>
                 <td class="px-6 py-4">
                     {{$event->title}}

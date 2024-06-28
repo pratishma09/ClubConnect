@@ -44,20 +44,32 @@
 
         var options = {
             title: 'Total Budget Spent by Event',
-            curveType: 'function',
-            legend: { position: 'bottom' },
+            legend: { position: 'none' },
             chartArea: {width: '70%', height: '70%'},
             hAxis: {
                 title: 'Event Name',
+                slantedText: false,
             },
             vAxis: {
                 title: 'Total Amount Spent',
                 minValue: 0,
             },
-            colors: ['#800080']
+            colors: ['#800080'],
+            pointSize: 7,
+            lineWidth: 2
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('google-chart'));
+        var chart = new google.visualization.ScatterChart(document.getElementById('google-chart'));
+
+        google.visualization.events.addListener(chart, 'ready', function () {
+            var paths = chart.getContainer().getElementsByTagName('path');
+            for (var i = 0; i < paths.length; i++) {
+                if (paths[i].getAttribute('stroke') === '#800080') {
+                    paths[i].setAttribute('stroke-width', 1);
+                }
+            }
+        });
+
         chart.draw(data, options);
     }
 </script>

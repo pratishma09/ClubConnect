@@ -32,6 +32,14 @@
               </a>
           </li>
           <li class="mb-6">
+            <a href="{{ route('contact.show') }}">
+                <span class="flex items-center gap-3 text-white text-xl">
+                  <i class="fas fa-calendar-check"></i>
+                    <p>Contact</p>
+                </span>
+            </a>
+        </li>
+          <li class="mb-6">
             <a href="{{ route('admin.changePassword') }}">
                 <span class="flex items-center gap-3 text-white text-xl">
                     <i class="fas fa-key"></i>

@@ -44,7 +44,7 @@
 
         var options = {
             title: 'Number of Participants by Event',
-            legend: { position: 'bottom' },
+            legend: { position: 'none' },
             chartArea: {width: '70%', height: '70%'},
             hAxis: {
                 title: 'Event Name',
@@ -53,10 +53,22 @@
                 title: 'Number of Participants',
                 minValue: 0,
             },
-            colors: ['#800080']
+            colors: ['#800080'],
+            pointSize: 7,
+            lineWidth: 2
         };
 
-        var chart = new google.visualization.BarChart(document.getElementById('google-chart'));
+        var chart = new google.visualization.ScatterChart(document.getElementById('google-chart'));
+
+        google.visualization.events.addListener(chart, 'ready', function () {
+            var lines = chart.getContainer().getElementsByTagName('path');
+            for (var i = 0; i < lines.length; i++) {
+                if (lines[i].getAttribute('stroke') === '#800080') {
+                    lines[i].setAttribute('stroke-width', 1);
+                }
+            }
+        });
+
         chart.draw(data, options);
     }
 </script>

@@ -1,23 +1,22 @@
 @extends('layout.admin')
 @section('content')
-
-
-<div class="relative overflow-x-auto shadow-md">
-    <button class="text-white bg-palette rounded m-5 py-1 px-2"><a href="{{ route('clubs.create') }}">Create Clubs</a></button>
+<p class="text-xl p-2 font-semibold">Contact</p>
+<div class="relative overflow-x-auto shadow-md mt-10">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3">
-                    Logo
-                </th>
+                
                 <th scope="col" class="px-6 py-3">
                     Name
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    President
+                    Phone
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Description
+                    Email
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Message
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Action
@@ -25,23 +24,24 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($clubs as $club)
+            @foreach ($contacts as $contact)
             <tr class="bg-white dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    <img class="w-20 h-10 object-contain" src="{{ asset('assets/' . $club->logo) }}" alt="{{$club->logo}}">
-                </th>
+                
                 <td class="px-6 py-4">
-                    {{$club->name}}
+                    {{$contact->name}}
                 </td>
                 <td class="px-6 py-4">
-                    {{$club->president}}
+                    {{$contact->phone}}
                 </td>
                 <td class="px-6 py-4">
-                    {{$club->description}}
+                    {{$contact->email}}
+                </td>
+                <td class="px-6 py-4">
+                    {{$contact->message}}
                 </td>
                 <td class="px-6 py-4 flex gap-2">
-                    <a href="{{route('clubs.edit',$club->id)}}" class="font-medium text-white dark:text-white py-1 px-2 rounded bg-palette">Edit</a>
-                    <form action="{{ route('clubs.delete', $club->id) }}" method="POST">
+                    
+                    <form action="{{ route('contacts.delete', $contact->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                     <button class="font-medium text-white dark:text-white py-1 px-2 rounded bg-palette">Delete</button>
