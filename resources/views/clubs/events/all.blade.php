@@ -6,11 +6,11 @@
     <div class="relative flex items-center justify-center mx-10">
         <button id="prev" class="transform -translate-y-1/2 bg-purple-800 text-white px-4 py-2 rounded-r-md hover:bg-purple-900"><i class="fa-solid fa-arrow-left"></i><p class="hidden">Prev</p></button>
         <div id="carousel" class="carousel flex overflow-hidden scroll-smooth snap-x snap-mandatory">
-
+            @if($events)
             @foreach($events as $event)
                 <div class="snap-start w-80 overflow-auto flex-shrink-0">
-                    <div class="bg-white p-6 rounded-lg shadow-lg text-center flex flex-col justify-between h-96 cursor-pointer" onclick="openModal('{{ $event->id }}')">
-                        <img src="{{ asset('assets/' . $event->photo) }}" alt="{{ $event->title }}" class="h-48 object-cover rounded-md mb-4">
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center flex flex-col justify-between h-96" >
+                        <img src="{{ asset('assets/' . $event->photo) }}" alt="{{ $event->title }}" class="h-40 object-cover rounded-md mb-4 cursor-pointer" onclick="openModal('{{ $event->id }}')">
                         <div class="flex-grow">
                             <h3 class="text-xl font-bold mb-2">{{ $event->title }}</h3>
                             <p class="text-gray-600 mb-2">{{ \Carbon\Carbon::parse($event->date)->format('F j, Y') }}</p>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             @endforeach
-            
+            @endif
         </div>
        <button id="next" class="transform -translate-y-1/2 bg-purple-800 text-white px-4 py-2 rounded-r-md hover:bg-purple-900"><i class="fa-solid fa-arrow-right"></i><p class="hidden">Next</p></button>
         

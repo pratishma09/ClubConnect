@@ -28,7 +28,7 @@
             @foreach ($clubs as $club)
             <tr class="bg-white dark:border-gray-700">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    <img class="w-20 h-10" src="{{ asset('assets/' . $club->logo) }}">
+                    <img class="w-20 h-10" src="{{ asset('assets/' . $club->logo) }}" alt="{{$club->logo}}">
                 </th>
                 <td class="px-6 py-4">
                     {{$club->name}}

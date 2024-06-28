@@ -4,12 +4,14 @@ use App\Http\Controllers\AuthAdminRegisterController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\CollaborationController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,11 @@ Route::get('/events/users', [EventController::class, 'userevent'])->name('userev
 Route::get('/events/users/{id}', [EventController::class, 'showuser'])->name('event.showuser');
 Route::get('/events/search', [EventController::class, 'search'])->name('events.search');
 
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware('admin')->group(function () {
@@ -50,6 +57,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/user/{id}/delete', [UserController::class, 'destroy'])->name('users.delete');
 
         Route::get('/events/admin', [EventController::class, 'adminIndex'])->name('events.adminIndex');
+
+        Route::get('/admin/change-password', [UserController::class, 'adminchangePassword'])->name('admin.changePassword');
+    Route::post('/admin/change-password', [UserController::class, 'adminchangePasswordSave'])->name('admin.postChangePassword');
+
+    Route::get('/admin/showFinance', [FinanceController::class, 'adminShow'])->name('admin.show_finance');
     });
 
     Route::get('/logout', [LogoutController::class, 'logout'])->name('custom.logout');
@@ -65,12 +77,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
     Route::get('events/{id}/report/edit', [EventController::class, 'editReport'])->name('events.report.edit');
     Route::put('events/{id}/report', [EventController::class, 'updateReport'])->name('events.report.update');
-    Route::post('/events/{event}/collaborate', [EventController::class, 'collaborate'])->name('events.collaborate');
-    Route::get('/events/viewcollaborate',[EventController::class,'show'])->name('events.show');
-    Route::post('/events/{eventId}/accept/{userId}', [EventController::class, 'acceptCollaboration'])->name('events.acceptCollaboration');
-    Route::post('/events/{eventId}/reject/{userId}', [EventController::class, 'rejectCollaboration'])->name('events.rejectCollaboration');
 
-    Route::get('/showFinance', [EventController::class, 'showFinance'])->name('events.showFinance');
-    Route::get('/clubs/update-budget/{event}', [EventController::class, 'updateBudgetShow'])->name('events.update_budgetShow');
-    Route::put('/clubs/update-budget/{event}', [EventController::class, 'updateBudget'])->name('events.update_budget');
+    Route::get('/events/viewcollaborate',[CollaborationController::class,'show'])->name('events.show');
+    Route::post('/events/{event}/collaborate', [CollaborationController::class, 'collaborate'])->name('events.collaborate');
+    Route::post('/events/{eventId}/accept/{userId}', [CollaborationController::class, 'acceptCollaboration'])->name('events.acceptCollaboration');
+    Route::post('/events/{eventId}/reject/{userId}', [CollaborationController::class, 'rejectCollaboration'])->name('events.rejectCollaboration');
+
+    Route::get('/showFinance', [FinanceController::class, 'showFinance'])->name('events.showFinance');
+    Route::get('/clubs/update-budget/{event}', [FinanceController::class, 'updateBudgetShow'])->name('events.update_budgetShow');
+    Route::put('/clubs/update-budget/{event}', [FinanceController::class, 'updateBudget'])->name('events.update_budget');
 });

@@ -14,23 +14,16 @@
                   </span>
               </a>
           </li>
+          
           <li class="mb-6">
-              <a href="{{ route('userShow') }}">
-                  <span class="flex items-center gap-3 text-white text-xl">
-                      <i class="fas fa-user"></i>
-                      <p>User</p>
-                  </span>
-              </a>
-          </li>
-          <li class="mb-6">
-              <a href="{{ route('register') }}">
+              <a href="{{ route('admin.show_finance') }}">
                   <span class="flex items-center gap-3 text-white text-xl">
                       <i class="fas fa-coins"></i>
                       <p>Finance</p>
                   </span>
               </a>
           </li>
-          <li>
+          <li class="mb-6">
               <a href="{{ route('events.adminIndex') }}">
                   <span class="flex items-center gap-3 text-white text-xl">
                     <i class="fas fa-calendar-check"></i>
@@ -38,6 +31,14 @@
                   </span>
               </a>
           </li>
+          <li class="mb-6">
+            <a href="{{ route('admin.changePassword') }}">
+                <span class="flex items-center gap-3 text-white text-xl">
+                    <i class="fas fa-key"></i>
+                    <p>Password</p>
+                </span>
+            </a>
+        </li>
       </ul>
   </div>
 </div>

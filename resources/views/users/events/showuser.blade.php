@@ -30,7 +30,7 @@
             </div>
             <div class="text-gray-700 mb-4 break-words">{!! $event->description !!}</div>
             <div class="flex justify-end">
-                <a href="{{ route('userevent') }}" class="text-blue-500 hover:underline text-blue">Back to Blogs</a>
+                <a href="{{ route('userevent') }}" class="text-blue-500 hover:underline text-blue">Back to Events</a>
             </div>
         </div>
     </div>

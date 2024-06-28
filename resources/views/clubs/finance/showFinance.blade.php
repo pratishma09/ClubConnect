@@ -3,6 +3,9 @@
 @section('clubs')
 <div class="relative overflow-x-auto shadow-md">
     <h1 class="text-xl font-semibold text-gray-900 m-5 text-center">Your Finance Details</h1>
+    <div class="mt-10">
+        {!! $chart->container() !!}
+    </div>
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
             <tr>
@@ -40,5 +43,8 @@
             @endforeach
         </tbody>
     </table>
+    
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{!! $chart->script() !!}
 @endsection

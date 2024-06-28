@@ -1,16 +1,16 @@
 @extends('layout.user')
 
 @section('users')
-<p class="text-3xl text-center my-5 font-semibold text-violet-500">Clubs</p>
-<div class="mx-10 flex flex-wrap gap-10">
+<p class="text-3xl text-center my-5 font-semibold mt-10 text-violet-500">Clubs</p>
+<div class="mx-20 mb-10 flex flex-wrap gap-10">
     @foreach($clubs as $club)
-    <button class="text-white rounded-md bg-gray-500 py-5 px-10 transition mb-5 hover:scale-110 flex flex-col items-center justify-center" onclick="openModal('modelConfirm{{ $club->id }}')">
+    <button class="text-white rounded-md bg-purple-300 h-40 w-80 py-5 px-10 transition mb-5 hover:scale-110 flex flex-col items-center justify-center" onclick="openModal('modelConfirm{{ $club->id }}')">
             <img src="{{ asset('assets/' . $club->logo) }}" class="h-20 w-20 object-contain bg-white rounded-full">
             <p class="mt-3">{{$club->name}}</p>
      </button>
      
      <div id="modelConfirm{{ $club->id }}" class="fixed hidden z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4 modal">
-         <div class="relative top-20 mx-auto shadow-xl bg-white max-w-xl overflow-y-auto">
+         <div class="relative top-20 mx-auto shadow-xl bg-white max-w-xl rounded-xl overflow-y-auto">
      
              <div class="flex justify-end p-2">
                  <button onclick="closeModal('modelConfirm{{ $club->id }}')" type="button"

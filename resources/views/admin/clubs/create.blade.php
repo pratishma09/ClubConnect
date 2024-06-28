@@ -11,8 +11,7 @@
                     <div class="w-full flex-1">
 
                         <div class="my-12 border-b text-center">
-                            <div
-                                class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2 uppercase">
+                            <div class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2 uppercase">
                                 Create Club
                             </div>
                         </div>
@@ -22,13 +21,9 @@
                                 @csrf
                                 <div class="mt-5">
                                     <label for="name" class="block text-sm font-medium text-gray-700">Club Name</label>
-                                    <select
+                                    <input
                                         class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                        name="name" id="name" required>
-                                        @foreach($users as $user)
-                                            <option value="{{ $user->name }}" >{{ $user->name }}</option>
-                                        @endforeach
-                                    </select>
+                                        type="text" name="name" id="name" required />
                                 </div>
                                 
                                 <textarea
@@ -40,23 +35,34 @@
                                 <input
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                                     type="text" name="vice_president" placeholder="Vice President" required />
-                                    <input
+                                <input
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                                     type="date" name="tenure_date" placeholder="Start Date" required />
-                                    <input
+                                <input
                                     class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                                    type="hidden" name="user_id" value="1" placeholder="User" required />
+                                    type="file" name="logo" placeholder="Logo" required />
+
+                                <div class="mt-5">
+                                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                                     <input
-                                        class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                                        type="file" name="logo" placeholder="Logo" required />
-
+                                        class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                        type="email" name="email" id="email" required />
                                 </div>
-                                <button type="submit"
-                                    class="mt-5 tracking-wide font-semibold bg-palette text-white-500 w-full py-4 rounded-lg hover:bg-green-200 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                <div class="mt-5 hidden">
+                                    <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+                                    <select
+                                        class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                        name="role" id="role" required>
+                                        <option value="club">Club</option>
+                                    </select>
+                                </div>
+                                
+                                {{-- Hidden field for user_id --}}
+                                <input type="hidden" name="user_id" value="1">
 
-                                    <span class="">
-                                        Create
-                                    </span>
+                                <button type="submit"
+                                    class="mt-5 tracking-wide font-semibold bg-palette text-white-500 w-full py-4 rounded-lg hover:bg-purple-600 text-white transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                    <span class="">Create</span>
                                 </button>
                             </form>
                         </div>

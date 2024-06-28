@@ -44,9 +44,8 @@
                                 </button>
                             </form>
                             <p class="mt-6 text-xs text-gray-600 text-center">
-                                I agree to abide by
-                                <a href="#" class="border-b border-gray-500 border-dotted">
-                                    Terms of Service
+                                <a href="{{route('forget.password.get')}}" class="border-b border-gray-500 border-dotted">
+                                    Forgot Password?
                                 </a>
                                 
                             </p>

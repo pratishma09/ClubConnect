@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Charts\FinanceChart;
 
 class EventController extends Controller
 {
@@ -64,12 +65,7 @@ class EventController extends Controller
             return back()->with('error', 'Something went wrong!');
         }
     }
-    public function show()
-    {
-        $user = auth()->user();
-        $events = Event::where('user_id', $user->id)->get();
-        return view('clubs.events.viewnotify', compact('events'));
-    }
+    
 
     public function showuser($id)
     {
@@ -182,64 +178,7 @@ class EventController extends Controller
             return back()->with('error', 'Something went wrong!');
         }
     }
-    public function collaborate(Request $request, $eventId)
-    {
-        try {
-            $event = Event::findOrFail($eventId);
-            $user = Auth::user();
-            if (!$user) {
-                return redirect()->back()->with('error', 'You are not logged in.');
-            }
-            if (!$event->users()->where('user_id', $user->id)->exists()) {
-                $event->users()->attach($user->id, ['status' => 'pending']);
-                $event = $event->fresh();
-                if ($event->user) {
-                    $event->user->notify(new CollaborationRequest($event, $user));
-                }
-            }
-
-            return redirect()->back()->with('success', 'Collaboration request sent.');
-        } catch (Exception $e) {
-            dd($e);
-            return back()->with('error', 'Something went wrong!');
-        }
-    }
-
-    public function acceptCollaboration(Request $request, $eventId, $userId)
-    {
-        try {
-            $event = Event::findOrFail($eventId);
-
-            if (Auth::user()->id !== $event->user_id) {
-                return redirect()->back()->with('error', 'You are not authorized to approve this collaboration.');
-            }
-
-            $event->users()->updateExistingPivot($userId, ['status' => 'accepted']);
-
-            $user = User::findOrFail($userId);
-            $collaborators = json_decode($event->collaborators, true) ?? [];
-            if (!in_array($user->name, $collaborators)) {
-                $collaborators[] = $user->name;
-            }
-            $event->update(['collaborators' => json_encode($collaborators)]);
-            return redirect()->back()->with('success', 'Collaboration accepted and event updated with collaborators.');
-        } catch (ModelNotFoundException $e) {
-            return redirect()->back()->with('error', 'Event or user not found.');
-        } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong.');
-        }
-    }
-
-    public function rejectCollaboration(Request $request, $eventId, $userId)
-    {
-        $event = Event::findOrFail($eventId);
-        if (Auth::user()->id !== $event->user_id) {
-            return redirect()->back()->with('error', 'You are not authorized to reject this collaboration.');
-        }
-        $event->users()->updateExistingPivot($userId, ['status' => 'rejected']);
-        return redirect()->back()->with('success', 'Collaboration rejected.');
-    }
-
+    
     public function userevent()
     {
         $events = Event::with('user')
@@ -278,60 +217,5 @@ class EventController extends Controller
         return view('admin.events.index', compact('events'));
     }
 
-    public function showFinance()
-    {
-        try {
-            $user = auth()->user();
-            $events = Event::where('user_id', $user->id)
-                ->orWhere('collaborators', 'LIKE', '%' . $user->name . '%')
-                ->with('clubs')
-                ->get();
-
-            $eventsWithAmountSpent = $events->map(function ($event) {
-                $event->amount_spent = $event->clubs->sum('pivot.amount_spent');
-                return $event;
-            });
-
-            return view('clubs.finance.showFinance', compact('eventsWithAmountSpent', 'events'));
-        } catch (Exception $e) {
-            dd($e);
-            return back()->with('error', 'Something went wrong!');
-        }
-    }
-
-    public function updateBudget(Request $request, Event $event)
-    {
-        $validatedData = $request->validate([
-            'amount_spent' => 'required|integer|min:0',
-        ]);
-
-        $user = Auth::user();
-        $club = Club::where('name', $user->name)->first();
-
-        if (!$club) {
-            return redirect()->back()->with('error', 'Club not found or you are not authorized.');
-        }
-
-        $club->initial_budget -= $validatedData['amount_spent'];
-
-        if ($club->initial_budget < 0) {
-            $club->initial_budget += $validatedData['amount_spent'];
-            return redirect()->back()->with('error', "You don't have enough budget.");
-        }
-
-        $club->save();
-        $event->clubs()->syncWithoutDetaching([
-            $club->id => ['amount_spent' => $validatedData['amount_spent']],
-        ]);
-
-        return redirect()->back()->with('success', 'Budget utilization updated successfully.');
-    }
-
-    public function updateBudgetShow(Event $event)
-    {
-        $user = auth()->user();
-        $club = Club::where('name', $user->name)->first();
-        return view('clubs.finance.budgetForm')->with(compact('event', 'club'));
-    }
 
 }
