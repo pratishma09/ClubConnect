@@ -1,6 +1,6 @@
 <header class="bg-white shadow-lg h-24 flex justify-between items-center px-4 lg:px-6 xl:px-8 sticky top-0 z-40">
-  <a href="/" class="flex items-center px-2 lg:px-4 xl:px-6">
-      <img class="h-10 object-contain" src="{{ asset('assets/logo.png') }}" alt="Logo" />
+  <a href="/" class="flex items-center ">
+      <img class="h-32 pt-3 object-cover" src="{{ asset('assets/logo.png') }}" alt="Logo" />
   </a>
   <!-- Mobile Menu Button -->
   <button id="mobile-menu-button" class="block lg:hidden px-2 focus:outline-none z-50">
@@ -9,7 +9,7 @@
       </svg>
   </button>
   <!-- Navigation Links -->
-  <nav id="mobile-menu" class="hidden lg:flex flex-grow justify-center items-center">
+  <nav id="mobile-menu" class="hidden lg:flex flex-grow justify-center font-semibold items-center">
       <ul class="flex justify-between items-center space-x-4">
           <li class="p-2 lg:p-3">
               <a href="{{ route('home') }}" class="text-gray-900 hover:text-purple-600">Home</a>
@@ -31,7 +31,7 @@
   <!-- Login Button -->
   <div class="hidden lg:flex items-center">
       <a href="/login">
-          <button class="bg-purple-400 hover:bg-purple-500 text-white font-bold px-4 xl:px-6 py-2 xl:py-3 rounded">
+          <button class="bg-purple-500 hover:bg-purple-600 text-white font-bold px-4 xl:px-6 py-2 xl:py-3 rounded">
               Login
           </button>
       </a>
@@ -64,7 +64,7 @@
           <a href="{{ route('contact.form') }}" class="text-gray-900 hover:text-purple-600">Contact</a>
       </li>
       <li class="p-2">
-          <a href="/login" class="bg-purple-400 hover:bg-purple-500 text-white font-bold px-4 py-2 rounded">
+          <a href="/login" class="bg-purple-500 hover:bg-purple-500 text-white font-bold px-4 py-2 rounded">
               Login
           </a>
       </li>

@@ -2,7 +2,7 @@
 
 @section('clubs')
 <div class="relative overflow-x-auto shadow-md">
-    <h1 class="text-xl font-semibold text-gray-900 m-5">Participation in Events</h1>
+    <h1 class="text-3xl font-normal text-center pt-8 text-palette ">Participation in Events</h1>
 
     <div id="google-chart" class="m-5" style="height: 400px;"></div>
 

@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="flex">
-        <div class="h-screen sticky bg-purple-800 flex flex-col justify-between">
+        <div class="h-screen sticky bg-[#606ea2] flex flex-col justify-between">
             @include('components.sidenav')
         </div>
             

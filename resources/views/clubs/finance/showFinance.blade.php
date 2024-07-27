@@ -2,7 +2,7 @@
 
 @section('clubs')
 <div class="relative overflow-x-auto shadow-md">
-    <h1 class="text-xl font-semibold text-gray-900 m-5">Your Finance Details</h1>
+    <h1 class="text-3xl font-normal text-center pt-8 text-palette ">Your Finance Details</h1>
     <div class="container">
         <ul style="list-style: square" class=" items-center justify-center flex gap-20">
             @foreach($labels as $index => $label)

@@ -3,7 +3,7 @@
 @section('users')
     <div class="container_section bg-gray-100">
         <div class="h-auto">
-            <h1 class="text-5xl font-normal text-center py-8 text-blue">Events</h1>
+            <h1 class="text-5xl font-normal text-center py-8 text-palette ">Events</h1>
 
             <!-- Filter Select -->
             <div class="flex justify-end items-center w-5/6 gap-4 space-x-4 mb-4">

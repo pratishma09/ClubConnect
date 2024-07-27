@@ -1,6 +1,6 @@
 @extends('layout.admin')
 @section('content')
-<p class="text-xl p-2 font-semibold">Contact</p>
+<p class="text-3xl font-normal text-center pt-8 text-palette ">Contact</p>
 <div class="relative overflow-x-auto shadow-md mt-10">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">

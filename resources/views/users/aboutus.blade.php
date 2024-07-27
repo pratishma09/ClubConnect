@@ -51,7 +51,7 @@
             </div>
 
             <div class="mt-8 text-center">
-                <a href="{{ route('clubs.userclub') }}" class="bg-palette text-white px-6 py-3 rounded-lg font-medium hover:bg-purple-700 transition duration-300">
+                <a href="{{ route('clubs.userclub') }}" class="bg-purple-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-purple-700 transition duration-300">
                     Explore Clubs
                 </a>
             </div>

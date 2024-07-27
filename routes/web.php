@@ -39,6 +39,9 @@ Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPa
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
+Route::post('/verify', [SubscriptionController::class, 'verify'])->name('users.verify');
+Route::get('/verify', [SubscriptionController::class, 'showVerificationForm']);
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware('admin')->group(function () {
         Route::get('/clubs/create', [ClubController::class, 'create'])->name('clubs.create');

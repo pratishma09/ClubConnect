@@ -4,7 +4,8 @@
         <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg md:flex justify-center flex-1">
             <div class="lg:w-1/2 p-6 sm:p-12">
                 <div>
-                    <img src="{{ asset('assets/logo.png') }}" class="mx-auto w-40" />
+                    <img src="{{ asset('assets/logo.png') }}" class="mx-auto h-20" />
+                    <p class="text-center text-purple-700 font-semibold italic">Join us at ClubConnect</p>
                 </div>
                 
                 <div class="flex flex-col w-full items-center">
@@ -36,9 +37,9 @@
                                     type="password" name="password" placeholder="Password" />
                                 <button
                                     type="submit"
-                                    class="mt-5 tracking-wide font-semibold bg-palette text-white-500 w-full py-4 rounded-lg hover:bg-green-200 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                    class="mt-5 tracking-wide font-semibold bg-palette text-white-500 w-full py-4 rounded-lg hover:bg-purple-600 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                                     
-                                    <span class="ml-">
+                                    <span class=" text-white ">
                                         Sign In
                                     </span>
                                 </button>

@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="flex h-screen">
-        <div class="h-screen bg-purple-800 sticky overflow-auto">
+        <div class="h-screen bg-[#606ea2] sticky overflow-auto">
             @include('components.clubnav')
         </div>
         

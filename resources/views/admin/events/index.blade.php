@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="relative overflow-x-auto shadow-md">
-    <p class="m-5 text-xl text-center font-semibold">Events</p>
+    <p class="text-3xl font-normal text-center pt-8 text-palette ">Events</p>
     {{-- <button class="text-white bg-palette rounded m-5 py-1 px-2"><a href="{{ route('events.create') }}">Create Event</a></button> --}}
     <table class="w-full mt-10 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
