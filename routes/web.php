@@ -9,6 +9,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ParticipationController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,11 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 Route::post('/verify', [SubscriptionController::class, 'verify'])->name('users.verify');
 Route::get('/verify', [SubscriptionController::class, 'showVerificationForm']);
 
+Route::post('/esewa', [PaymentController::class, 'esewaPay'])->name('esewa');
+Route::get('/success', [PaymentController::class, 'esewaPaySuccess']);
+Route::get('/failure', [PaymentController::class, 'esewaPayFailed']);
+Route::get('/ticket/download/{ticketId}', [PaymentController::class, 'downloadTicket'])->name('ticket.download');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware('admin')->group(function () {
         Route::get('/clubs/create', [ClubController::class, 'create'])->name('clubs.create');
@@ -59,6 +65,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Route::delete('/user/{id}/delete', [UserController::class, 'destroy'])->name('users.delete');
 
         Route::get('/events/admin', [EventController::class, 'adminIndex'])->name('events.adminIndex');
+        Route::get('/events/admin/ticket/{id}', [EventController::class, 'adminTicket'])->name('admin.events.ticket');
 
         Route::get('/admin/change-password', [UserController::class, 'adminchangePassword'])->name('admin.changePassword');
         Route::post('/admin/change-password', [UserController::class, 'adminchangePasswordSave'])->name('admin.postChangePassword');
@@ -81,6 +88,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
     Route::get('events/{id}/report/edit', [EventController::class, 'editReport'])->name('events.report.edit');
     Route::put('events/{id}/report', [EventController::class, 'updateReport'])->name('events.report.update');
+    Route::get('/events/ticket/{id}', [EventController::class, 'ticket'])->name('events.ticket');
 
     Route::get('/events/viewcollaborate', [CollaborationController::class, 'show'])->name('events.show');
     Route::post('/events/{event}/collaborate', [CollaborationController::class, 'collaborate'])->name('events.collaborate');

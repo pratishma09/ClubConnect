@@ -27,8 +27,10 @@
                                 <input class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                                     type="date" name="date" placeholder="Date" value="{{ $event->date }}" required />
                                 <input class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                                    type="number" name="budget" placeholder="Budget" value="{{ $event->budget }}" required />
-
+                                    type="number" name="budget" placeholder="Budget" value="{{ $event->budget }}" step="100" required />
+                                    
+                                <input class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                                    type="number" name="price" placeholder="Ticket Price" value="{{ $event->price }}" step="10" required />
                                 <div class="mt-5">
                                     <label for="photo" class="block text-sm font-medium text-gray-700">Event Photo</label>
                                     <input class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"

@@ -31,6 +31,7 @@ class EventRequest extends FormRequest
             'report_description'=>'string',
             'date'=>'required|date',
             'budget'=>'required',
+            'price'=>'nullable',
             'club_id'=> 'exists:clubs,id',
             'user_id'=> 'required|exists:users,id',
             'photo'=> [

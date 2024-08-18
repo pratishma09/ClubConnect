@@ -184,7 +184,7 @@ class EventController extends Controller
             $events = Event::all();
             return view('clubs.events.all', compact('events'));
         } catch (Exception $e) {
-            dd($e);
+        
             return back()->with('error', 'Something went wrong!');
         }
     }
@@ -215,6 +215,18 @@ class EventController extends Controller
         return response()->json([
             'events' => $events,
         ]);
+    }
+
+    public function ticket($id){
+        $event = Event::findOrFail($id);
+        $tickets = $event->tickets; 
+        return view('clubs.events.ticket',compact('event','tickets'));
+    }
+
+    public function adminTicket($id){
+        $event = Event::findOrFail($id);
+        $tickets = $event->tickets; 
+        return view('admin.events.ticket',compact('event','tickets'));
     }
 
     public function adminIndex()

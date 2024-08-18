@@ -22,9 +22,9 @@
                 <th scope="col" class="px-6 py-3">
                     Budget
                 </th>
-                {{-- <th scope="col" class="px-6 py-3">
-                    Report
-                </th> --}}
+                <th scope="col" class="px-6 py-3">
+                    Price
+                </th>
                 <th scope="col" class="px-6 py-3">
                     Action
                 </th>
@@ -47,6 +47,15 @@
                 </td>
                 <td class="px-6 py-4">
                     {{$event->budget}}
+                </td>
+                <td class="px-6 py-4">
+                    @if ($event->price)
+                        <a href="{{ route('admin.events.ticket', $event->id) }}" class="hover:text-palette" >
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                    @else
+                        N/A
+                    @endif
                 </td>
                 {{-- <td class="px-6 py-4">
                     {{$event->report_description}}

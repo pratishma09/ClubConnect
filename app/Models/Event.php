@@ -20,9 +20,14 @@ class Event extends Model
         'photo',
         'report_images',
         'collaborators',
-        'no_of_participants'
+        'no_of_participants',
+        'price'
     ];
 
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
     public function clubs()
     {
         return $this->belongsToMany(Club::class, 'event_club')

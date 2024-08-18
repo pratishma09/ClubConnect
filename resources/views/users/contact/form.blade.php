@@ -1,11 +1,11 @@
 @extends('layout.user')
 
 @section('users')
-<section class="bg-blue-50 dark:bg-[#765fa2]" id="contact">
+<section class="bg-[#765fa2] dark:bg-[#765fa2]" id="contact">
     <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div class="mb-4">
             <div class="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">
-                <p class="text-base font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-200">
+                <p class="text-base font-semibold uppercase tracking-wide text-blue-200 dark:text-blue-200">
                     Contact
                 </p>
                 <h2 class="font-heading mb-4 font-bold tracking-tight text-white dark:text-white text-3xl sm:text-5xl">

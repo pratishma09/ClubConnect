@@ -44,6 +44,12 @@
                                 </div>
 
                                 <div class="mt-5">
+                                    <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                                    <input class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                        type="number" name="price" id="price" value="{{ $event->price }}" placeholder="Price" required />
+                                </div>
+
+                                <div class="mt-5">
                                     <label for="photo" class="block text-sm font-medium text-gray-700">Event Photo</label>
                                     <input class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                                         type="file" name="photo" id="photo" accept=".jpg, .jpeg, .png" />
