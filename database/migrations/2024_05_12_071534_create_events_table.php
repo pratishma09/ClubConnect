@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->foreignId('club_id')->constrained()->onDelete('cascade')->nullable();
+            // $table->foreignId('club_id')->constrained()->onDelete('cascade')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->date('date');
             $table->decimal('budget', 10, 2)->default(0);

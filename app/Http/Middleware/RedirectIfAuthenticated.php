@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
                 if ($user->role == 'admin') {
                     return redirect('/clubs');
                 } elseif ($user->role == 'club') {
-                    return redirect('/clubs');
+                    return redirect('/myevents');
                 }
             }
         }
