@@ -30,7 +30,7 @@
             <form method="POST" action="{{ route('custom.logout') }}">
                 @csrf
                 <button id="logoutForm" type="submit" onclick="submitLogoutForm()"
-                    class="items-center flex gap-2 text-lg rounded">
+                    class="items-center flex gap-2 text-lg rounded outline-none">
                     <i class="fas fa-arrow-right-from-bracket text-xl"></i>
                     <p class="">Logout</p>
                 </button>

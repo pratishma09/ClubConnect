@@ -12,6 +12,7 @@ use App\Http\Controllers\ParticipationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FullCalenderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,9 @@ Route::post('/esewa', [PaymentController::class, 'esewaPay'])->name('esewa');
 Route::get('/success', [PaymentController::class, 'esewaPaySuccess']);
 Route::get('/failure', [PaymentController::class, 'esewaPayFailed']);
 Route::get('/ticket/download/{ticketId}', [PaymentController::class, 'downloadTicket'])->name('ticket.download');
+
+Route::get('fullcalender', [FullCalenderController::class, 'index'])->name('event.calendar');
+Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware('admin')->group(function () {

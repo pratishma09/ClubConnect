@@ -203,7 +203,7 @@ class EventController extends Controller
         $pastEvents = $events->filter(function ($event) {
             return Carbon::parse($event->date)->isPast();
         });
-
+        // dd($events);
         return view('users.events.index', compact('events', 'upcomingEvents', 'pastEvents'));
     }
 

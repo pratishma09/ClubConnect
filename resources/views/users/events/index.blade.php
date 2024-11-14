@@ -4,9 +4,14 @@
     <div class="container_section bg-gray-100">
         <div class="h-auto">
             <h1 class="text-5xl font-normal text-center py-8 text-palette ">Events</h1>
+
             
                 <!-- Filter Select -->
                 <div class="flex justify-end items-center w-5/6 gap-4 space-x-4 mb-4">
+                    <button type="button"
+                                            class="text-white bg-blue-600 hover:shadow-xl rounded px-3 py-1.5 shadow-sm text-sm uppercase">
+                                            <a href="{{ route('event.calendar') }}" class="text-white">Calendar</a>
+                                        </button>
                     <label for="filterSelect" class="mr-2">Filter:</label>
                     <select id="filterSelect" class="outline-none p-2">
                         <option value="all">All Events</option>
@@ -14,7 +19,7 @@
                         <option value="past">Past Events</option>
                     </select>
                 </div>
-                <div class="flex">
+                
                 <!-- Event List -->
                 <div class="event-list pb-10">
                     @foreach ($events as $event)
@@ -62,7 +67,7 @@
                                         @endif
                                         <button type="button"
                                             class="text-white bg-purple-600 hover:shadow-xl rounded px-3 py-1.5 shadow-sm text-sm uppercase">
-                                            <a href="{{ route('event.showuser', [$event->id]) }}">Read More</a>
+                                            <a href="{{ route('event.showuser', [$event->id]) }}" class="text-white">Read More</a>
                                         </button>
                                     </div>
 
@@ -71,10 +76,8 @@
                         </div>
                     @endforeach
                 </div>
-                <div>
-                    <p class="text-lg text-palette">Calendar</p>
-                </div>
-            </div>
+                
+           
         </div>
     </div>
     <div id="ticketModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
@@ -141,4 +144,5 @@
             }
         });
     </script>
+
 @endsection

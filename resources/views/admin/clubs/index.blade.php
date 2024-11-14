@@ -3,7 +3,7 @@
 
 
 <div class="relative overflow-x-auto shadow-md">
-    <button class="text-white bg-palette rounded m-5 py-1 px-2"><a href="{{ route('clubs.create') }}">Create Clubs</a></button>
+    <button class="text-white bg-palette rounded m-5 py-1 px-2"><a href="{{ route('clubs.create') }}" class="text-white">Create Clubs</a></button>
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
             <tr>

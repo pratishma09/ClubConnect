@@ -1,4 +1,4 @@
-<div class="mt-10 mb-10">
+<div class="mt-10">
     <div class="flex gap-5 mb-10">
         <a href="/" class="flex items-center">
             <img class="h-32 w-32 ml-5 object-contain" src="{{ asset('assets/logo.png') }}" alt="" />
@@ -55,7 +55,7 @@
         <form method="POST" action="{{ route('custom.logout') }}">
             @csrf
             <button id="logoutForm" type="submit" onclick="submitLogoutForm()"
-                class="items-center flex gap-2 text-lg rounded">
+                class="items-center flex gap-2 text-lg rounded outline-none">
                 <i class="fas fa-arrow-right-from-bracket text-xl"></i>
                 <p class="">Logout</p>
             </button>

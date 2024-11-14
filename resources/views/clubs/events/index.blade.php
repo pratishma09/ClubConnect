@@ -1,8 +1,12 @@
 @extends('layout.club')
 @section('clubs')
     <div class="relative overflow-x-auto shadow-md">
-        <button class="text-white bg-palette rounded m-5 py-1 px-2"><a href="{{ route('events.create') }}">Create
+        <button class="text-white bg-palette rounded m-5 py-1 px-2"><a href="{{ route('events.create') }}"
+                class="text-white">Create
                 Event</a></button>
+        <div class="flex justify-center">
+            <div id="calendar" class="w-1/2"></div>
+        </div>
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
                 <tr>
@@ -72,4 +76,89 @@
             </tbody>
         </table>
     </div>
+
+    <script>
+        $(document).ready(function() {
+
+            var SITEURL = "{{ url('/') }}";
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var calendar = $('#calendar').fullCalendar({
+                editable: true,
+                events: SITEURL + "/fullcalender",
+                displayEventTime: false,
+                editable: true,
+                eventRender: function(event, element, view) {
+                    if (event.allDay === 'true') {
+                        event.allDay = true;
+                    } else {
+                        event.allDay = false;
+                    }
+                },
+                selectable: true,
+                selectHelper: true,
+                select: function(start, end, allDay) {
+                    var title = prompt('Event Title:');
+                    if (title) {
+                        var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
+                        var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
+                        $.ajax({
+                            url: SITEURL + "/fullcalenderAjax",
+                            data: {
+                                title: title,
+                                start: start,
+                                end: end,
+                                type: 'add'
+                            },
+                            type: "POST",
+                            success: function(data) {
+                                displayMessage("Event Created Successfully");
+
+                                calendar.fullCalendar('renderEvent', {
+                                    id: data.id,
+                                    title: title,
+                                    start: start,
+                                    end: end,
+                                    allDay: allDay
+                                }, true);
+
+                                calendar.fullCalendar('unselect');
+                            }
+                        });
+                    }
+                },
+                eventDrop: function(event, delta) {
+                    var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
+                    var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
+
+                    $.ajax({
+                        url: SITEURL + '/fullcalenderAjax',
+                        data: {
+                            title: event.title,
+                            start: start,
+                            end: end,
+                            id: event.id,
+                            type: 'update'
+                        },
+                        type: "POST",
+                        success: function(response) {
+                            displayMessage("Event Updated Successfully");
+                        }
+                    });
+                },
+
+
+            });
+
+        });
+
+        function displayMessage(message) {
+            toastr.success(message, 'Event');
+        }
+    </script>
 @endsection
