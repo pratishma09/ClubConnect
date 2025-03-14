@@ -39,7 +39,7 @@ RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|g' /e
 RUN service apache2 restart
 
 # Expose port 80
-EXPOSE 80
+EXPOSE 10000
 
 # Start Apache server
 CMD ["apache2-foreground"]
