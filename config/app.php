@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => 'Laravel', // Hardcoded value
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => 'production', // Hardcoded value
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => false, // Hardcoded value
 
     /*
     |--------------------------------------------------------------------------
@@ -55,9 +55,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => 'http://localhost', // Hardcoded value
 
-    'asset_url' => env('ASSET_URL'),
+    'asset_url' => null, // You can set a URL if needed
 
     /*
     |--------------------------------------------------------------------------
@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'UTC', // Hardcoded value
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'en', // Hardcoded value
 
     /*
     |--------------------------------------------------------------------------
@@ -96,7 +96,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'en', // Hardcoded value
 
     /*
     |--------------------------------------------------------------------------
@@ -105,11 +105,11 @@ return [
     |
     | This locale will be used by the Faker PHP library when generating fake
     | data for your database seeds. For example, this will be used to get
-    | localized telephone numbers, street address information and more.
+    | localized telephone numbers, street address information, and more.
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'en_US', // Hardcoded value
 
     /*
     |--------------------------------------------------------------------------
@@ -122,9 +122,9 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => 'base64:skhtWVf7LInz33Fo3/CtNNo2I+F53eq2HVr3gQSGQvE=', // Hardcoded value
 
-    'cipher' => 'AES-256-CBC',
+    'cipher' => 'AES-256-CBC', // Hardcoded value
 
     /*
     |--------------------------------------------------------------------------
@@ -140,7 +140,7 @@ return [
     */
 
     'maintenance' => [
-        'driver' => 'file',
+        'driver' => 'file', // Hardcoded value
         // 'store' => 'redis',
     ],
 
@@ -156,6 +156,7 @@ return [
     */
 
     'providers' => ServiceProvider::defaultProviders()->merge([
+
         /*
          * Package Service Providers...
          */
