@@ -50,6 +50,6 @@
                 <img src="https://www.svgrepo.com/show/22048/dribbble.svg" class="" width="30" height="30" alt="db" />
             </div>
         </div>
-        <p class="font-sans p-8 text-start md:text-center md:text-lg md:p-4">© 2024 ClubConnect. All rights reserved.</p>
+        <p class="font-sans p-8 text-start md:text-center md:text-lg md:p-4">© {{date("Y")}} ClubConnect. All rights reserved.</p>
     </div>
 </footer>

@@ -58,13 +58,13 @@
                                             $eventDate = new DateTime($event->date);
                                             $currentDate = new DateTime();
                                         @endphp
-                                        @if ($event->price && $eventDate > $currentDate)
+                                        {{-- @if ($event->price && $eventDate > $currentDate)
                                             <button type="button"
                                                 class="text-white bg-purple-600 hover:shadow-xl rounded px-3 py-1.5 shadow-sm text-sm"
                                                 onclick="openTicketModal({{ $event->id }}, '{{ $event->price }}')">
                                                 Get Tickets
                                             </button>
-                                        @endif
+                                        @endif --}}
                                         <button type="button"
                                             class="text-white bg-purple-600 hover:shadow-xl rounded px-3 py-1.5 shadow-sm text-sm uppercase">
                                             <a href="{{ route('event.showuser', [$event->id]) }}" class="text-white">Read More</a>
