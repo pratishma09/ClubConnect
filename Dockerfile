@@ -18,7 +18,7 @@ RUN a2enmod rewrite
 WORKDIR /var/www/html
 
 # Copy Laravel files
-COPY . . 
+COPY . .
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -26,6 +26,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
 
+# Install SweetAlert package via Composer
 RUN composer require realrashid/sweet-alert
 
 # Set permissions
@@ -35,11 +36,14 @@ RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 # Change Apache DocumentRoot to Laravel's public directory
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
+# Update Apache to listen on Render's port (10000)
+RUN sed -i 's|Listen 80|Listen 10000|' /etc/apache2/ports.conf
+
+# Expose port 10000 for Render
+EXPOSE 10000
+
 # Restart Apache to apply changes
 RUN service apache2 restart
-
-# Expose port 80
-EXPOSE 10000
 
 # Start Apache server
 CMD ["apache2-foreground"]
