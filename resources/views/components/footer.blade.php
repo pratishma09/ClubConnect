@@ -1,5 +1,5 @@
 <!-- component -->
-<footer class="mt-20 bg-purple-100/80 font-sans ">
+<footer class=" bg-purple-100/80 font-sans">
     <div class="container px-6 py-12 mx-auto">
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
             <div class="sm:col-span-2">
@@ -9,7 +9,7 @@
                 <form method="POST" action="{{ route('subscribe.store') }}" class="flex flex-col space-y-4 md:w-1/2 mx-auto">
                     @csrf
                     <input type="email" name="email" placeholder="Enter your email" class="border-gray-500 border p-3 rounded-md focus:outline-none focus:border-purple-500">
-                    <button type="submit" class="bg-purple-500 text-black px-4 py-3 rounded-md hover:bg-purple-600 transition-colors focus:outline-none">Subscribe</button>
+                    <button type="submit" class="bg-purple-500 text-white px-4 py-3 rounded-md hover:bg-purple-600 transition-colors focus:outline-none">Subscribe</button>
                 </form>
             </div>
 
@@ -19,7 +19,7 @@
                 <div class="flex flex-col items-start mt-5 space-y-2">
                     <a href="/" class="text-gray-500 transition-colors duration-300 dark:text-gray-500 dark:hover:text-palette hover:underline hover:cursor-pointer hover:text-palette">Home</a>
                     <a class="text-gray-500 transition-colors duration-300 dark:text-gray-500 dark:hover:text-palette hover:underline hover:cursor-pointer hover:text-palette">Who We Are</a>
-                    <a class="text-gray-500 transition-colors duration-300 dark:text-gray-500 dark:hover:text-palette hover:underline hover:cursor-pointer hover:text-palette">Contacts</a>
+                    <a href="/contact" class="text-gray-500 transition-colors duration-300 dark:text-gray-500 dark:hover:text-palette hover:underline hover:cursor-pointer hover:text-palette">Contacts</a>
                 </div>
             </div>
 
@@ -50,6 +50,6 @@
                 <img src="https://www.svgrepo.com/show/22048/dribbble.svg" class="" width="30" height="30" alt="db" />
             </div>
         </div>
-        <p class="font-sans p-8 text-start md:text-center md:text-lg md:p-4">© 2024 ClubConnect. All rights reserved.</p>
+        <p class="font-sans p-8 text-start md:text-center md:text-lg md:p-4">© {{date("Y")}} ClubConnect. All rights reserved.</p>
     </div>
 </footer>

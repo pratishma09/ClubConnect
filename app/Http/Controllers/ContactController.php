@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactFormRequest;
 use App\Models\ContactRequest;
+use App\Models\contact;
+
+use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 
 class ContactController extends Controller
@@ -19,5 +23,28 @@ class ContactController extends Controller
     public function create()
     {
         return view('users.contact.form');
+    }
+
+    public function show()
+    {
+        $contacts=ContactRequest::all();
+        return view('admin.contact.show')->with(compact('contacts'));
+    }
+
+    public function destroy(string $id)
+    {
+        //
+        try {
+            $contact = ContactRequest::findOrFail($id);
+            $contact->delete();
+            return redirect(route('contact.show'))->with('success', 'Contact deleted successfully');
+        } catch (QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+            if ($errorCode == 1451) {
+                return back()->with('error', 'Cannot delete the contact because it has related records.');
+            }
+        } catch (Exception $e) {
+            return back()->with('error', 'Something went wrong!');
+        }
     }
 }

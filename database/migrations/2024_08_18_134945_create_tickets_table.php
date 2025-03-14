@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('collaborations', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('from_club_id')->constrained('clubs')->onDelete('cascade');
-            $table->foreignId('to_club_id')->constrained('clubs')->onDelete('cascade');
-            $table->enum('status', ['accepted', 'pending']);
+        Schema::create('tickets', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('event_id');
+            $table->string('buyer_name');
+            $table->integer('ticket_count')->default(0);
             $table->timestamps();
+
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('collaborations');
+        Schema::dropIfExists('tickets');
     }
 };

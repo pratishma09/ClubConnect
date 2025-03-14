@@ -29,6 +29,6 @@ class AuthAdminRegisterController extends Controller
             'role' => $request->role
         ]);
 
-        return redirect()->route('register')->with('success', 'User created successfully.');
+        return redirect()->route('userShow')->with('success', 'User created successfully.');
     }
 }

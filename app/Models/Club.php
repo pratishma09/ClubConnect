@@ -16,11 +16,17 @@ class Club extends Model
         'president',
         'vice_president',
         'user_id',
-        'logo'
+        'logo',
+        'initial_budget'
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
+    }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'event_club')->withPivot('amount_spent')->withTimestamps();
     }
 }

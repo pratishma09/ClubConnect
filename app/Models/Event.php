@@ -18,6 +18,35 @@ class Event extends Model
         'club_id',
         'user_id',
         'photo',
-        'report_images'
+        'report_images',
+        'collaborators',
+        'no_of_participants',
+        'price'
     ];
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+    public function clubs()
+    {
+        return $this->belongsToMany(Club::class, 'event_club')
+                    ->withPivot('amount_spent')
+                    ->withTimestamps();
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'event_user')->withPivot('status')->withTimestamps();
+    }
 }

@@ -26,7 +26,9 @@
                                 <input class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                                     type="date" name="date" placeholder="Date" required />
                                 <input class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                                    type="number" name="budget" placeholder="Budget" required />
+                                    type="number" name="budget" placeholder="Budget" step="100" required />
+                                <input class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                                    type="number" name="price" placeholder="Ticket Price" step="10" required />
 
                                 <div class="mt-5">
                                     <label for="photo" class="block text-sm font-medium text-gray-700">Event Photo</label>
@@ -35,7 +37,7 @@
                                 </div>
 
                                 <button type="submit"
-                                    class="mt-5 tracking-wide font-semibold bg-palette text-white-500 w-full py-4 rounded-lg hover:bg-green-200 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                    class="mt-5 tracking-wide font-semibold bg-palette text-white-500 w-full py-4 rounded-lg hover:bg-green-200 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none text-white">
                                     <span>Create</span>
                                 </button>
                             </form>

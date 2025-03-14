@@ -48,6 +48,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Club::class);
     }
+
+    public function club()
+    {
+        return $this->hasOne(Club::class);
+    }
     
     public function isAdmin()
     {
